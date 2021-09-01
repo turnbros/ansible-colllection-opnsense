@@ -1,0 +1,20 @@
+namespace: "turnbros"
+name: "opnsense"
+version: "1.0.0"
+readme: "README.md"
+description: "A collection of Ansible modules for managing an Opnsense device"
+authors:
+    - "Dylan Turnbull <dylanturn@gmail.com>"
+dependencies:
+license:
+    - Apache-2.0
+tags:
+    - opnsense
+    - networking
+    - rest
+    - system
+    - netops
+repository: "https://github.com/turnbros/ansible-colllection-opnsense"
+documentation: "https://github.com/turnbros/ansible-colllection-opnsense/blob/main/README.md"
+homepage: "https://github.com/turnbros/ansible-colllection-opnsense"
+issues: "https://github.com/turnbros/ansible-colllection-opnsense/issues"

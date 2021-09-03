@@ -16,28 +16,30 @@ description: This module manages an Opnsense firewall alias
 options:
     api_key:
         description: The API key used to authenticate with Opnsense
-        required: true
+        required: false
         type: str
     api_secret:
         description: The API secret used to authenticate with Opnsense
-        required: true
+        required: false
         type: str
     api_scheme:
         description: The HTTP scheme to use when connecting to Opnsense
         required: false
-        default: https
         type: str
     api_host:
         description: The hostname or IP of the Opnsense device
-        required: true
+        required: false
         type: str
     api_port:
         description: The port to connection to the Opnsense device on
         required: false
-        default: 443
         type: int
     api_ca_path:
         description: A path to the CA files used to validate the Opnsense cert
+        required: false
+        type: str
+    api_ca_content:
+        description: The content of a CA cert that can be used to validate the Opnsense cert
         required: false
         type: str
     name:
@@ -114,11 +116,11 @@ from opnsense_api.util import AliasType
 def run_module():
 
   module_args = dict(
-    api_key=dict(type='str', required=True),
-    api_secret=dict(type='str', required=True, no_log=True),
-    api_scheme=dict(type='str', required=False, default="https"),
-    api_host=dict(type='str', required=True),
-    api_port=dict(type='int', required=False, default=443),
+    api_key=dict(type='str', required=False, default=None),
+    api_secret=dict(type='str', required=False, default=None, no_log=True),
+    api_scheme=dict(type='str', required=False, default=None),
+    api_host=dict(type='str', required=False, default=None),
+    api_port=dict(type='int', required=False, default=None),
     api_ca_path=dict(type='str', required=False, default=None),
 
     name=dict(type='str', required=True),

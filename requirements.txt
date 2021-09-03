@@ -1,2 +1,2 @@
 ansible==4.5.0
-python-opnsense==1.0.0
+python-opnsense==1.0.1

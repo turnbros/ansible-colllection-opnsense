@@ -122,6 +122,7 @@ def run_module():
     api_host=dict(type='str', required=False, default=None),
     api_port=dict(type='int', required=False, default=None),
     api_ca_path=dict(type='str', required=False, default=None),
+    api_ca_content=dict(type='str', required=False, default=None),
 
     name=dict(type='str', required=True),
     description=dict(type='str', required=False, default=""),
@@ -152,7 +153,8 @@ def run_module():
                               scheme=module.params['api_scheme'],
                               host=module.params['api_host'],
                               port=module.params['api_port'],
-                              ca_path=module.params['api_ca_path']
+                              ca_path=module.params['api_ca_path'],
+                              ca_content=module.params['api_ca_content']
                               ).firewall.alias_controller
 
   # Get all the module params

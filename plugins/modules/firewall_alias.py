@@ -203,7 +203,9 @@ def run_module():
         if (response['result'] == 'saved') and ('uuid' in response):
           alias = alias_controller.get_alias(response['uuid'])
         else:
-          module.fail_json(f"Failed to create alias with response: {json.dumps(response)}")
+          result["error"] = f"Failed to create alias with response: {json.dumps(response)}"
+          module.fail_json(**result)
+
 
       else:
         alias = dict(
@@ -251,7 +253,8 @@ def run_module():
         if response['result'] == 'saved':
           updated_alias = alias_controller.get_alias(alias_uuid)
         else:
-          module.fail_json(f"Failed to update the alias with response: {json.dumps(response)}")
+          result["error"] = f"Failed to update the alias with response: {json.dumps(response)}"
+          module.fail_json(**result)
       else:
         updated_alias = dict(
           uuid=alias_uuid,

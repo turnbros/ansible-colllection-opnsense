@@ -1,11 +1,15 @@
 namespace: "dylanturn"
 name: "opnsense"
-version: "1.0.3"
+version: "1.0.4"
 readme: "README.md"
 description: "A collection of Ansible modules for managing an Opnsense device"
 authors:
     - "Dylan Turnbull <dylanturn@gmail.com>"
 dependencies:
+build_ignore:
+    - venv
+    - test.ignore.yml
+    - ignore
 license:
     - Apache-2.0
 tags:

@@ -262,24 +262,30 @@ def run_module():
 
   # Create a new firewall filter rule
   if module.params['state'] == "present":
-
-    if
-
-    # Combine the filter_rule_spec with the filter_rule
-    change_needed = False
-    for attribute in filter_rule_spec.keys():
-      if((attribute != 'uuid')
-          and (filter_rule_spec[attribute] is not None)
-          and (filter_rule[attribute] != filter_rule_spec[attribute])):
-        change_needed = True
-        filter_rule[attribute] = filter_rule_spec[attribute]
-
-    result["changed"] = change_needed
-
     if not module.check_mode:
-      result['diff']['after'] = filter_controller.add_or_set_rule(**{k: v for k, v in filter_rule.items() if v is not None})
+      result['diff']['after'] = filter_controller.add_or_set_rule(filter_rule["uuid"],
+                                                                  action=filter_rule_spec["action"],
+                                                                  direction=filter_rule_spec["direction"],
+                                                                  interface=filter_rule_spec["interface"],
+                                                                  protocol=filter_rule_spec["protocol"],
+                                                                  source_net=filter_rule_spec["source_net"],
+                                                                  source_port=filter_rule_spec["source_port"],
+                                                                  destination_net=filter_rule_spec["destination_net"],
+                                                                  destination_port=filter_rule_spec["destination_port"],
+                                                                  gateway=filter_rule_spec["gateway"],
+                                                                  source_not=filter_rule_spec["source_not"],
+                                                                  destination_not=filter_rule_spec["destination_not"],
+                                                                  sequence=filter_rule_spec["sequence"],
+                                                                  description=filter_rule_spec["description"],
+                                                                  enabled=filter_rule_spec["enabled"],
+                                                                  quick=filter_rule_spec["quick"],
+                                                                  log=filter_rule_spec["log"],
+                                                                  ipprotocol=filter_rule_spec["ipprotocol"])
     else:
       result['diff']['after'] = filter_rule
+
+  if result['diff']['after'] != result['diff']['before']:
+    result["changed"] = True
 
   module.exit_json(**result)
 

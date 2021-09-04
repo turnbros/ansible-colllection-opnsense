@@ -1,6 +1,6 @@
 namespace: "dylanturn"
 name: "opnsense"
-version: "1.0.4"
+version: "1.0.5"
 readme: "README.md"
 description: "A collection of Ansible modules for managing an Opnsense device"
 authors:

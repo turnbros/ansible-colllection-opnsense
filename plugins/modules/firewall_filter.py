@@ -263,9 +263,11 @@ def run_module():
   # Create a new firewall filter rule
   if module.params['state'] == "present":
 
+    if
+
     # Combine the filter_rule_spec with the filter_rule
     change_needed = False
-    for attribute in filter_rule.keys():
+    for attribute in filter_rule_spec.keys():
       if((attribute != 'uuid')
           and (filter_rule_spec[attribute] is not None)
           and (filter_rule[attribute] != filter_rule_spec[attribute])):

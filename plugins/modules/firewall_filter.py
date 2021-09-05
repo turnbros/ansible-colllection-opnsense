@@ -263,7 +263,10 @@ def run_module():
   # Create a new firewall filter rule
   if module.params['state'] == "present":
     if not module.check_mode:
-      result['diff']['after'] = filter_controller.add_or_set_rule(filter_rule["uuid"],
+      filter_uuid = None
+      if filter_rule is not None:
+        filter_uuid = filter_rule["uuid"]
+      result['diff']['after'] = filter_controller.add_or_set_rule(filter_uuid,
                                                                   action=filter_rule_spec["action"],
                                                                   direction=filter_rule_spec["direction"],
                                                                   interface=filter_rule_spec["interface"],
